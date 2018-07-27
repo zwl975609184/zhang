@@ -1,0 +1,41 @@
+
+m selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+dr=webdriver.Chrome()
+dr.get("https://mail.qq.com")
+sleep(2)
+dr.switch_to.frame(0)
+dr.find_element_by_xpath('//*[@id="switcher_plogin"]').click()
+sleep(2)
+dr.find_element_by_id('u').send_keys('741881781')
+dr.find_element_by_id('p').send_keys('zwl19970803')
+sleep(2)
+dr.find_element_by_id('login_button').click()
+sleep(3)
+dr.find_element_by_xpath('//*[@id="composebtn_td"]').click()
+sleep(2)
+dr.switch_to.frame('mainFrame')
+dr.find_element_by_xpath('//*[@id="toolbar"]/div/div/a[2]').click()
+sleep(2)
+b=dr.current_window_handle  #获取当前句柄
+temp=dr.window_handles
+for x in temp:
+    if x!=b:
+       dr.switch_to.window(x)    #到新的打开页面
+sleep(2)
+dr.switch_to.frame('mainFrame')
+sleep(2)
+dr.find_element_by_xpath('//*[@id="toAreaCtrl"]/div[2]/input').send_keys('981859036')
+dr.find_element_by_xpath('//*[@id="subject"]').send_keys('1214816324')
+sleep(2)
+dr.switch_to.frame(0)
+dr.find_element(By.XPATH,"/html/body").send_keys('展翅飞翔做气质流氓，不慌不忙咱来日方长！！！')
+dr.switch_to.default_content()
+sleep(3)
+dr.switch_to.frame('mainFrame')
+dr.find_element_by_xpath("//*[@id='toolbar']/div/a[1]").click()
+
+
